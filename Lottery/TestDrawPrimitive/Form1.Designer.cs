@@ -37,24 +37,30 @@ namespace TestDrawPrimitive
             rotation = txMatrix2.YImageOperation();
 
             rotation.Scale(scale);
-
             
-            base.OnPaint(e);
             Graphics dc = e.Graphics;
-            //dc.DrawImage
-            Pen bluepen = new Pen(Color.Blue, 3);
-            txVector2 bluerect;
-            bluerect.x = 0.0;
-            bluerect.y = 0.0;
-            txVector2 screenvec = translation + rotation * bluerect;
-            dc.DrawRectangle(bluepen, (int)screenvec.x,(int)screenvec.y, 50, 50);
-            Pen redpen = new Pen(Color.Red, 2);
-            //dc.DrawEllipse(redpen, 0, 50, 80, 60);
-            Brush greenbrush = new SolidBrush(Color.Gray);
-            dc.FillEllipse(greenbrush, width/2,height/2, 100, 100);
+
+            RenderCoordinateFrame(dc,rotation, translation);
+
             RenderDisk(world.DiskList,dc,rotation,translation);
             RenderRectangle(world.RectBoundary,dc,rotation,translation);
+
+
+            base.OnPaint(e);
         }
+
+        private void RenderCoordinateFrame(Graphics dc, txMatrix2 rotation, txVector2 translation)
+        {
+            Pen yellopen = new Pen(Color.Yellow, 1);
+            txVector2 origin = txVector2.Zero();
+            origin = translation + rotation * origin;
+            int X = (int) origin.x;
+            int Y = (int) origin.y;
+            dc.DrawLine(yellopen,new Point(-10000, Y),new Point(10000, Y));
+            dc.DrawLine(yellopen, new Point(X, 10000), new Point(X, -10000));
+        }
+
+
 
         private void RenderDisk(List<txPhysicalShpere> disklist, Graphics dc, txMatrix2 rotation, txVector2 translation)
         {
@@ -66,24 +72,36 @@ namespace TestDrawPrimitive
                 double xlb = ob.x-txPhysicalShpere.RADIUS;
                 double ylb = ob.y-txPhysicalShpere.RADIUS;
 
-                dc.DrawEllipse(grayPen,(int)xlb+300,(int)ylb+300,(int)txPhysicalShpere.DIAMETER,(int)txPhysicalShpere.DIAMETER);
+                dc.DrawEllipse(grayPen,(int)xlb,(int)ylb,(int)txPhysicalShpere.DIAMETER,(int)txPhysicalShpere.DIAMETER);
             }
         }
 
         private void RenderRectangle(txRectangle rect, Graphics dc, txMatrix2 rotation, txVector2 translation)
         {
             // Draw Rectangle
-            Pen redPen = new Pen(Color.Red,2);
+            Pen redPen = new Pen(Color.Red,5);
             txVector2 lb = translation + rotation * rect.LeftBottomV;
+            txVector2 rb = translation + rotation * rect.RightBottomV;
             txVector2 rt = translation + rotation * rect.RightTopV;
-            int width = (int) (rect.RightTopV.x - rect.LeftBottomV.x);
-            int height = (int) (rect.RightTopV.y-rect.LeftBottomV.y);
-            Trace.Assert(width > 0);
-            Trace.Assert(height > 0);
-            double xlb = lb.x;
-            double ylb = lb.y;
-            dc.DrawRectangle(redPen,(int)xlb,(int)ylb,width,height);
-            dc.DrawRectangle(redPen, 100, 200, 800, 600);
+            txVector2 lt = translation + rotation * rect.LeftTopV;
+            //int width = (int)(rect.RightTopV.x - rect.LeftBottomV.x);
+            //int height = (int)(rect.RightTopV.y - rect.LeftBottomV.y);
+            //Trace.Assert(width > 0);
+            //Trace.Assert(height > 0);
+            //double xlb = lb.x;
+            //double ylb = lb.y;
+            //dc.DrawRectangle(redPen,(int)xlb,(int)ylb,width,height);
+            //dc.DrawRectangle(redPen, 100, 200, 800, 600);
+            Point[] points = 
+            {
+                new Point((int)lb.x,(int)lb.y),
+                new Point((int)rb.x,(int)rb.y),
+                new Point((int)rt.x,(int)rt.y),
+                new Point((int)lt.x,(int)lt.y),
+                new Point((int)lb.x,(int)lb.y)
+            };
+
+            dc.DrawLines(redPen, points);
         }
 
         
@@ -117,8 +135,8 @@ namespace TestDrawPrimitive
             world = new txWorld();
             world.SetUpScene();
 
-            const double step = 0.00001;
-            for (int i = 0; i < 4; i++)
+            const double step = 0.1;
+            for (int i = 0; i < 20; i++)
             {
                 world.Simulate(step);
                 //OnPaint(CreateGraphics());

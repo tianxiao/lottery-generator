@@ -13,7 +13,7 @@ namespace Lottery
             { 
                 // update velocity
                 it.Velocity = it.Velocity + it.Acceleration * deltat;
-                it.Velocity = 0.0 * it.Velocity;
+                it.Velocity = 0.6 * it.Velocity;
                 // update position
                 it.Position =it.Position + it.Velocity * deltat;
             }

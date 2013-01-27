@@ -25,9 +25,18 @@ namespace Lottery
                 it.Force = txVector2.Zero();
                 foreach (txColliderPatch patch in it.CollisionPatches)
                 {
-                    force = force + txPhysicalShpere.CalculateForceFromPenetrationDepth(it.Stiffness, patch.penetrationdepth, patch.normal);
+                    // penetration force will take consideration after the rigid body dynamic have been finished
+                    // Here Only consider the disk to disk collision and the disk to boundary collision
+                    // consider these collision to be the elastic
+                    // disk0 to disk1 the velocity of two disk will change
+                    // disk to boundary the velocity of the boundary normal of the disk will reverse
+                    // only took consider the two body condistion ?
+                    // the three disks collision???
+                    //force = force + txPhysicalShpere.CalculateForceFromPenetrationDepth(it.Stiffness, patch.penetrationdepth, patch.normal);
+
                 }
                 it.Force = it.Force + globalforce + force;
+                // update velocity direction during contact!
                 it.CollisionPatches.Clear();
             }
         }

@@ -11,6 +11,13 @@ namespace Lottery
         txVector2 rightBottomV;
         txVector2 leftTopV;
         txVector2 rightTopV;
+
+        // 
+        txVector2 constleftBottomV;
+        txVector2 constrightBottomV;
+        txVector2 constleftTopV;
+        txVector2 constrightTopV;
+
         double omega;
         txMatrix2 met;
 
@@ -22,6 +29,7 @@ namespace Lottery
         public txVector2 RightTopV { get { return rightTopV; } }
         public txMatrix2 RotationMatrix { get { return met; } }
         public List<txLineSegment> LineSegmentList { get { return linesegmentlist; } }
+        public double Omega { get { return omega; } }
 
         public txRectangle(txVector2 v0_, txVector2 v1_, txVector2 v2_, txVector2 v3_, double omega_) {
             leftBottomV = v0_;
@@ -30,6 +38,10 @@ namespace Lottery
             leftTopV = v3_;
             omega = omega_;
             met = new txMatrix2(1.0,0.0,0.0,1.0);
+            constleftBottomV = leftBottomV;
+            constrightBottomV = rightBottomV;
+            constrightTopV = rightTopV;
+            constleftTopV = leftTopV;
             AssemblyLineSegmentList();
         }
 
@@ -39,10 +51,10 @@ namespace Lottery
 
         private void Rotate(double t) {
             met = new txMatrix2(t * omega);
-            leftBottomV = met * leftBottomV;
-            rightBottomV = met * rightBottomV;
-            rightTopV = met * rightTopV;
-            leftTopV = met * leftTopV;
+            leftBottomV = met * constleftBottomV;
+            rightBottomV = met * constrightBottomV;
+            rightTopV = met * constrightTopV;
+            leftTopV = met * constleftTopV;
             AssemblyLineSegmentList();
         }
 

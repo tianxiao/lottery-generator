@@ -117,10 +117,20 @@ namespace LotteryTest
             txMatrix2 target = new txMatrix2(theta);
             Assert.AreEqual(target.m00, -1.0);
             Assert.IsTrue(Math.Abs(target.m01) < txVector2.VECTOR_PRECISION);
-            Assert.AreEqual(target.m01, 0.0);
+            Assert.IsTrue(Math.Abs(target.m01)<txVector2.VECTOR_PRECISION);
             Assert.IsTrue(Math.Abs(target.m10) < txVector2.VECTOR_PRECISION);
-            Assert.AreEqual(target.m10, 0.0);
-            Assert.AreEqual(target.m11, -1.0);
+            Assert.IsTrue(Math.Abs(target.m10)<txVector2.VECTOR_PRECISION);
+            Assert.IsTrue(Math.Abs(target.m11+1.0)<txVector2.VECTOR_PRECISION);
+
+            double theata2 = Math.PI / 3.0;
+            double cos2 = Math.Cos(theata2);
+            double sin2 = Math.Sin(theata2);
+            txMatrix2 target2 = new txMatrix2(theata2);
+            Assert.IsTrue(Math.Abs(cos2 - target2.m00) < txVector2.VECTOR_PRECISION);
+            Assert.IsTrue(Math.Abs(sin2 + target2.m01) < txVector2.VECTOR_PRECISION);
+            Assert.IsTrue(Math.Abs(sin2 - target2.m10) < txVector2.VECTOR_PRECISION);
+            Assert.IsTrue(Math.Abs(cos2 - target2.m11) < txVector2.VECTOR_PRECISION);
+            //Assert.IsTrue(false);
             // Assert.Inconclusive("TODO: Implement code to verify target");
         }
 

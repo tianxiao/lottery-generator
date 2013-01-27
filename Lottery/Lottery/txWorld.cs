@@ -20,6 +20,10 @@ namespace Lottery
         public List<txPhysicalShpere> DiskList{ get { return disklist; }  }
         public txRectangle RectBoundary { get { return rectboundary; } }
 
+        // Constant parameters
+        const double gravityparameter = 10000;
+        const double stiffnessparameter = 100;
+
         public void SetUpScene()
         {
             SetUpBoundary();
@@ -30,7 +34,7 @@ namespace Lottery
             forceupdator = new txForceUpdator();
             txVector2 g;
             g.x = 0.0;
-            g.y = -1.0;
+            g.y = -gravityparameter;
             forceupdator.GlobalForce = g;
 
             // reset the time
@@ -59,7 +63,7 @@ namespace Lottery
                     disk.Velocity = txVector2.Zero();
                     disk.Acceleration = txVector2.Zero();
                     disk.Force = txVector2.Zero();
-                    disk.Stiffness = 10.0;
+                    disk.Stiffness = stiffnessparameter;
                     disk.Id = -1;
                     disk.CollisionPatches.Clear();
                     disklist.Add(disk);
@@ -132,13 +136,6 @@ namespace Lottery
             linesegment.start = pstart;
             linesegment.end = pend;
             return linesegment; 
-        }
-
-        public static double XScale(txLineSegment box,double screenlength)
-        {
-            throw new Exception("Not finished!");  
-            
-            return screenlength;
         }
 
     }
