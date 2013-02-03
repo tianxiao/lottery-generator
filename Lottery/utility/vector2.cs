@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Lottery
+namespace txGeometry
 {
     public enum txOrientationState { 
         LEFT,
@@ -148,19 +148,19 @@ namespace Lottery
             return !(l == r);
         }
 
-        public override bool Equals(object obj)
-        {
-            throw new NotImplementedException();
-            if (obj == null) return false;
+        //public override bool Equals(object obj)
+        //{
+        //    //throw new NotImplementedException();
+        //    if (obj == null) return false;
 
-            if (object.ReferenceEquals(this, obj)) return true;
+        //    if (object.ReferenceEquals(this, obj)) return true;
 
-            if (this.GetType() != obj.GetType()) return false;
+        //    if (this.GetType() != obj.GetType()) return false;
 
-            //txVector2 objvect = obj as txVector2;
+        //    //txVector2 objvect = obj as txVector2;
 
-            //return this == objvect;
-        }
+        //    //return this == objvect;
+        //}
 
 
 

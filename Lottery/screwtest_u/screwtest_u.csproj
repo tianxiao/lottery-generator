@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6A9C34B9-C026-44DA-8C24-883C65828855}</ProjectGuid>
+    <ProjectGuid>{00F9CF91-A115-4D0B-8262-BF1D08E345CB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LotteryTest</RootNamespace>
-    <AssemblyName>LotteryTest</AssemblyName>
+    <RootNamespace>screwtest_u</RootNamespace>
+    <AssemblyName>screwtest_u</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -51,17 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="txMatrix2Test.cs" />
-    <Compile Include="txMatrixTest.cs" />
-    <Compile Include="txRectangleTest.cs" />
     <Compile Include="txScrwUtilityTest.cs" />
-    <Compile Include="txVector2Test.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lottery\Lottery.csproj">
-      <Project>{EB463033-F6F4-405B-A438-768F2245C084}</Project>
-      <Name>Lottery</Name>
-    </ProjectReference>
     <ProjectReference Include="..\screwtest\screwtest.csproj">
       <Project>{FBF7BA62-B22C-4F62-98CF-2B290DCBB1DE}</Project>
       <Name>screwtest</Name>
@@ -70,9 +62,6 @@
       <Project>{7890A1C2-AC04-4768-A2E1-54A263659419}</Project>
       <Name>utility</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Shadow Include="Test References\Lottery.accessor" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
