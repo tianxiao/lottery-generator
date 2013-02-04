@@ -1,0 +1,113 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 12.04.0 ] */
+
+/* [wxMaxima: input   start ] */
+declare(p,constant);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x:x0*cos(theta)+y0*sin(theta);
+y:-x0*sin(theta)+y0*cos(theta);
+z:p*theta;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+declare(A,constant);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+declare(omega,constant);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+xx:x-A;
+yy:y*cos(omega)+z*cos(omega);
+zz:-y*sin(omega)+z*cos(omega);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ff:xx*diff(xx)+yy*diff(yy);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fdz:diff(zz)=0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve(fdz,del(theta));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ffXuYu :ev(ff,del(theta)=(sin(omega)*cos(theta)*del(y0)-sin(omega)*sin(theta)*del(x0))/(sin(omega)*sin(theta)*y0+sin(omega)*cos(theta)*x0+p*cos(omega)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ffXuYu:ev(ffXuYu,del(x0)=xu);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ffXuYu:ev(ffXuYu,del(y0)=yu);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ffXuYuKappa:ev(ffXuYu,yu=kappa*xu)/xu;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: hide output   ] */
+/* [wxMaxima: input   start ] */
+ffCosSin : ratsimp(%o51);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+p0:(sin(theta)*y0+cos(theta)*x0-A);
+p1:(((sin(omega)*kappa*cos(theta)*xu-sin(omega)*sin(theta)*xu)*(cos(theta)*y0-sin(theta)*x0))/(sin(omega)*sin(theta)*y0+sin(omega)*cos(theta)*x0+p*cos(omega))+kappa*sin(theta)*xu+cos(theta)*xu);
+p2:(cos(omega)*(cos(theta)*y0-sin(theta)*x0)+p*cos(omega)*theta);
+p3:(((sin(omega)*kappa*cos(theta)*xu-sin(omega)*sin(theta)*xu)*(cos(omega)*(-sin(theta)*y0-cos(theta)*x0)+p*cos(omega)))/(sin(omega)*sin(theta)*y0+sin(omega)*cos(theta)*x0+p*cos(omega))-cos(omega)*sin(theta)*xu+cos(omega)*kappa*cos(theta)*xu);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ratsimp(ffXuYuKappa-(p0*p1+p2*p3)/xu);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+p1xu:ratsimp(p1/xu);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+p3xu:ratsimp(p3/xu);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+p0;
+p1xu;
+p2;
+p3xu;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(p0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+expand(p1xu);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(p0*p1xu+p2*p3xu, theta);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+p0123donimator0 :sin(omega)*sin(theta)*y0+sin(omega)*cos(theta)*x0+p*cos(omega);
+p0123donimator1:(sin(omega)*sin(theta)*y0+sin(omega)*cos(theta)*x0+p*cos(omega))^2;
+p0123n0:(p*cos(omega)*kappa*cos(theta)-p*cos(omega)*sin(theta))*(sin(theta)*y0+cos(theta)*x0-A);
+p0123n1:((p*cos(omega)*sin(omega)+p*cos(omega)^2)*sin(theta)+(-p*cos(omega)*sin(omega)-p*cos(omega)^2)*kappa*cos(theta))*(cos(omega)*(-sin(theta)*y0-cos(theta)*x0)+p*cos(omega));
+p0123n2:((p*cos(omega)*sin(omega)+p*cos(omega)^2)*cos(theta)-(-p*cos(omega)*sin(omega)-p*cos(omega)^2)*kappa*sin(theta))*(cos(omega)*(cos(theta)*y0-sin(theta)*x0)+p*cos(omega)*theta);
+p0123n3:((p*cos(omega)*sin(omega)+p*cos(omega)^2)*sin(theta)+(-p*cos(omega)*sin(omega)-p*cos(omega)^2)*kappa*cos(theta))*(sin(omega)*cos(theta)*y0-sin(omega)*sin(theta)*x0)*(cos(omega)*(cos(theta)*y0-sin(theta)*x0)+p*cos(omega)*theta);
+p0123n4:(cos(theta)*y0-sin(theta)*x0)*((sin(omega)*kappa*sin(theta)^2+sin(omega)*kappa*cos(theta)^2)*y0+(sin(omega)*sin(theta)^2+sin(omega)*cos(theta)^2)*x0+p*cos(omega)*kappa*sin(theta)+p*cos(omega)*cos(theta));
+p0123n5:(sin(omega)*cos(theta)*y0-sin(omega)*sin(theta)*x0)*(sin(theta)*y0+cos(theta)*x0-A)*((sin(omega)*kappa*sin(theta)^2+sin(omega)*kappa*cos(theta)^2)*y0+(sin(omega)*sin(theta)^2+sin(omega)*cos(theta)^2)*x0+p*cos(omega)*kappa*sin(theta)+p*cos(omega)*cos(theta));
+ratsimp(diff(p0*p1xu+p2*p3xu,theta)-(p0123n0/p0123donimator0-p0123n1/p0123donimator0-p0123n2/p0123donimator0+p0123n3/p0123donimator1+p0123n4/p0123donimator0-p0123n5/p0123donimator1));
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
