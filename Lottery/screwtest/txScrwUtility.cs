@@ -14,12 +14,14 @@ namespace screwtest
         const double alpha = Math.PI / 4.0;
         double beta;
         double alphact;
+        const double h = 15.0;
 
         public double Beta { get {return beta;} }
         public double ScrewRadius { get { return screwRadius; } }
         public double Alpha { get { return alpha; } }
         public double ScrewRadiusE { get { return screwRadiusE; } }
         public double Alphact { get { return alphact; } }
+        public double H { get { return h; } }
 
         public txScrwUtility()
         {

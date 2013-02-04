@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="txScrwUtilityTest.cs" />
+    <Compile Include="txVector3Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\screwtest\screwtest.csproj">

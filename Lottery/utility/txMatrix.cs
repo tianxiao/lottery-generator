@@ -25,6 +25,20 @@ namespace txGeometry
             m11 = costheat;
         }
 
+        public static txMatrix2 RotationThetaMatrix(double theta)
+        {
+            double costheat = Math.Cos(theta);
+            double sintheat = Math.Sin(theta);
+
+            txMatrix2 m;
+            m.m00 = costheat;
+            m.m01 = -sintheat;
+            m.m10 = sintheat;
+            m.m11 = costheat;
+
+            return m;
+        }
+
         public static txVector2 operator *(txMatrix2 m, txVector2 v) {
             txVector2 rtn;
             rtn.x = m.m00 * v.x + m.m01 * v.y;

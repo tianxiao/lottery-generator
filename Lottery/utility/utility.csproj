@@ -46,6 +46,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="txMatrix.cs" />
+    <Compile Include="txNewtonRaphson.cs" />
+    <Compile Include="txVector3.cs" />
     <Compile Include="vector2.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
